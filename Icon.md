@@ -1,7 +1,7 @@
 <h1>图标</h1>
 <h2>$mdIcon</h2>
 <p>$mdIcon服务是一个用于查找SVG图标的函数</p>
-<h3>用法</h3>
+<h4>用法</h4>
 <code>
 	function SomeDirective($mdIcon) {  
 
@@ -24,7 +24,7 @@
 	    element.append(iconEl);  
 
 	  });  
-	  
+
 	};
 </code>
 
@@ -55,4 +55,46 @@
 		<td>obj</td>
 		<td>由SVG数据文件中的SVG标记创建的初始SVG DOM元素的副本。</td>
 	</tr>
-</table>
+</table>  
+
+<h2>$mdIconProvider</h2>
+<p>
+$mdIconProvider只用于将URL注册为ID。这些配置特性允许图标和图标集在"<md-icon/>"指令编译前预先注册并连接源URL。
+</p>
+<p>
+实际的svg文件加载将延迟至按需请求，并由$mdIcon服务使用$http服务内部加载。当以name/ID请求一个SVG时，$mdIcon服务将搜索相关的源URL的注册表；该URL用来按需加载并动态解析SVG。
+</p>
+<h4>js</h4>
+<code>
+app.config(function($mdIconProvider) {  
+  // Configure URLs for icons specified by [set:]id.  
+  $mdIconProvider  
+       .defaultIconSet('my/app/icons.svg')       //   Register a default set of SVG icons
+       .iconSet('social', 'my/app/social.svg')   //   Register a named icon set of SVGs
+       .icon('android', 'my/app/android.svg')    //   Register a specific icon (by name)
+       .icon('work:chair', 'my/app/chair.svg');  //   Register icon in a specific set  
+});
+</code>
+<p>SVG图标和图标集可通过使用(a)构建过程 或 (b)运行时的启动过程，被轻松预加载和缓存（如下所示）：</p>
+<h4>js</h4>
+<code>
+	app.config(function($mdIconProvider) {  
+	// Register a default set of SVG icon definitions  
+	$mdIconProvider.defaultIconSet('my/app/icons.svg')  
+})  
+.run(function($http, $templateCache){  
+	// Pre-fetch icons sources by URL and cache in the $templateCache...  
+  // subsequent $http calls will look there first.  
+  var urls = [ 'imy/app/icons.svg', 'img/icons/android.svg'];  
+  angular.forEach(urls, function(url) {  
+    $http.get(url, {cache: $templateCache});  
+  });  
+});
+</code>
+<P><strong>注意：</strong>SVG数据随后被内部缓存起来以备之后的请求</P>
+
+<h3>用法</h3>
+<p>$mdIconProvider();</p>
+
+<h3>方法</h3>
+<p>$mdIconProvider.icon(id,url,[iconsize]);</p>
