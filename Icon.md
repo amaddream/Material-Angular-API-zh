@@ -3,17 +3,17 @@
 <p>$mdIcon服务是一个用于查找SVG图标的函数</p>
 <h3>用法</h3>
 <code>
-	function SomeDirective($mdIcon) {<br>
-	  // See if the icon has already been loaded, if not<br>
-	  // then lookup the icon from the registry cache, load and cache<br>
-	  // it for future requests.<br>
-	  // NOTE: ID queries require configuration with $mdIconProvider<br>
-	  $mdIcon('android').then(function(iconEl)    { element.append(iconEl); });<br>
-	  $mdIcon('work:chair').then(function(iconEl) { element.append(iconEl); });<br>
-	  // Load and cache the external SVG using a URL<br>
-	  $mdIcon('img/icons/android.svg').then(function(iconEl) {<br>
-	    element.append(iconEl);<br>
-	  });<br>
+	function SomeDirective($mdIcon) {<br/>
+	  // See if the icon has already been loaded, if not<br/>
+	  // then lookup the icon from the registry cache, load and cache<br/>
+	  // it for future requests.<br/>
+	  // NOTE: ID queries require configuration with $mdIconProvider<br/>
+	  $mdIcon('android').then(function(iconEl)    { element.append(iconEl); });<br/>
+	  $mdIcon('work:chair').then(function(iconEl) { element.append(iconEl); });<br/>
+	  // Load and cache the external SVG using a URL<br/>
+	  $mdIcon('img/icons/android.svg').then(function(iconEl) {<br/>
+	    element.append(iconEl);<br/>
+	  });<br/>
 	};
 </code>
 
