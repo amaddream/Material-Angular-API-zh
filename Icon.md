@@ -41,8 +41,8 @@
 	<tr>
 		<td>*id</td>
 		<td>字符串</td>
-		<td>id或者URL的惟一查询值。如果参数是URL，服务将从内部缓存检索图标元素或者首先加载图标并缓存。如果值不是URL类型字符串，则将执行一次ID查询。id可以是一个惟一的图标ID或者包含一个图标集ID的前缀。<br><br>
-		要使id查询正确地运行，意味着必须事先用$mdIconProvider来配置所有id到URL映射。
+		<td>惟一id或URL的查询值。如果参数是URL，服务将从它的内部缓存中检索该图标元素，或先加载图标并缓存，再执行此操作。如果该值不是URL类型的字符串，则将执行一次ID查询。id可以是一个惟一的图标ID或者是包含一个图标集ID前缀的字符串。<br><br>
+		要使id查询正确地运行，意味着必须事先用$mdIconProvider来配置所有id到URL的映射。
 		</td>
 	</tr>
 </table>
@@ -62,33 +62,51 @@
 $mdIconProvider只用于将URL注册为ID。这些配置特性允许图标和图标集在"<md-icon/>"指令编译前预先注册并连接源URL。
 </p>
 <p>
-实际的svg文件加载将延迟至按需请求，并由$mdIcon服务使用$http服务内部加载。当以name/ID请求一个SVG时，$mdIcon服务将搜索相关的源URL的注册表；该URL用来按需加载并动态解析SVG。
+实际的svg文件加载将延迟至按需发送的请求，并由$mdIcon服务使用$http服务内部加载。当以name/ID请求一个SVG时，$mdIcon服务将搜索相关的源URL注册表；该URL用来按需加载并动态解析SVG。
 </p>
 <h4>js</h4>
 <code>
 app.config(function($mdIconProvider) {  
+
   // Configure URLs for icons specified by [set:]id.  
+
   $mdIconProvider  
-       .defaultIconSet('my/app/icons.svg')       //   Register a default set of SVG icons
-       .iconSet('social', 'my/app/social.svg')   //   Register a named icon set of SVGs
-       .icon('android', 'my/app/android.svg')    //   Register a specific icon (by name)
+
+       .defaultIconSet('my/app/icons.svg')       //   Register a default set of SVG icons  
+
+       .iconSet('social', 'my/app/social.svg')   //   Register a named icon set of SVGs  
+
+       .icon('android', 'my/app/android.svg')    //   Register a specific icon (by name)  
+
        .icon('work:chair', 'my/app/chair.svg');  //   Register icon in a specific set  
+
 });
 </code>
 <p>SVG图标和图标集可通过使用(a)构建过程 或 (b)运行时的启动过程，被轻松预加载和缓存（如下所示）：</p>
 <h4>js</h4>
 <code>
 	app.config(function($mdIconProvider) {  
+
 	// Register a default set of SVG icon definitions  
+
 	$mdIconProvider.defaultIconSet('my/app/icons.svg')  
+
 })  
+
 .run(function($http, $templateCache){  
+
 	// Pre-fetch icons sources by URL and cache in the $templateCache...  
+
   // subsequent $http calls will look there first.  
+
   var urls = [ 'imy/app/icons.svg', 'img/icons/android.svg'];  
+
   angular.forEach(urls, function(url) {  
+
     $http.get(url, {cache: $templateCache});  
+
   });  
+
 });
 </code>
 <P><strong>注意：</strong>SVG数据随后被内部缓存起来以备之后的请求</P>
