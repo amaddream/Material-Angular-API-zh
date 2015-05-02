@@ -144,7 +144,7 @@ app.config(function($mdIconProvider) {
 	<tr>
 		<td>*md-svg-icon</td>
 		<td>string</td>
-		<td>用来从内部缓存查询图标的字符串name；插值字符串或表达式都可以用。可以用语法"<set name>:<icon name>"来使用特定的集合名。  
+		<td>用来从内部缓存查询图标的字符串name；插值字符串或表达式都可以用。可以用语法/<set name/>:/<icon name/>"来使用特定的集合名。  
 
 		为了使用图标集（icon sets），开发者需要用$mdIconProvider服务预先注册这个图标集。
 		</td>
