@@ -116,3 +116,47 @@ app.config(function($mdIconProvider) {
 
 <h3>方法</h3>
 <p>$mdIconProvider.icon(id,url,[iconsize]);</p>
+
+<h2>md-icon</h2>
+<p>md-icon指令是一个用于展示一个字体图标或者SVG图标的标记元素。不管是外部SVG（通过URL）还是来自图标集的缓存SVG都能很容易地被加载和使用。</p>
+
+<h3>用法</h3>
+<h4>html</h4>
+<code>
+	<md-icon md-font-icon="android" alt="android "></md-icon>  
+	<md-icon md-svg-icon="action:android" alt="android "></md-icon>  
+	<md-icon md-svg-src="/android.svg" alt="android "></md-icon>  
+	<md-icon md-svg-src="{{ getAndroid() }}" alt="android "></md-icon>
+</code>
+
+<h3>属性</h3>
+<table>
+	<tr>
+		<th>属性</th>
+		<th>类型</th>
+		<th>描述</th>
+	</tr>
+	<tr>
+		<td>*md-svg-src</td>
+		<td>string</td>
+		<td>用来加载、缓存和显示一个外部SVG的字符串URL[或者表达式]</td>
+	</tr>
+	<tr>
+		<td>*md-svg-icon</td>
+		<td>string</td>
+		<td>用来从内部缓存查询图标的字符串name；插值字符串或表达式都可以用。可以用语法"<set name>:<icon name>"来使用特定的集合名。  
+
+		为了使用图标集（icon sets），开发者需要用$mdIconProvider服务预先注册这个图标集。
+		</td>
+	</tr>
+	<tr>
+		<td>*md-font-icon</td>
+		<td>string</td>
+		<td>CSS图标关联字体的字符串name将被用于渲染图标。需要预先加载字体和指定的CSS样式。</td>
+	</tr>
+	<tr>
+		<td>alt</td>
+		<td>string</td>
+		<td>图标的可访问标注。如果提供了空字符串，图标将以aria-hidden="true"的方式从访问层隐藏。如果图标的父元素没有alt也没有标注，控制台将记录一个警告。</td>
+	</tr>
+</table>
