@@ -59,7 +59,7 @@
 
 <h2>$mdIconProvider</h2>
 <p>
-$mdIconProvider只用于将URL注册为ID。这些配置特性允许图标和图标集在"<md-icon/>"指令编译前预先注册并连接源URL。
+$mdIconProvider只用于将URL注册为ID。这些配置特性允许图标和图标集在"&lt;md-icon/&gt;"指令编译前预先注册并连接源URL。
 </p>
 <p>
 实际的svg文件加载将延迟至按需发送的请求，并由$mdIcon服务使用$http服务内部加载。当以name/ID请求一个SVG时，$mdIcon服务将搜索相关的源URL注册表；该URL用来按需加载并动态解析SVG。
@@ -115,18 +115,118 @@ app.config(function($mdIconProvider) {
 <p>$mdIconProvider();</p>
 
 <h3>方法</h3>
-<p>$mdIconProvider.icon(id,url,[iconsize]);</p>
+<h4>$mdIconProvider.icon(id,url,[iconsize]);</h4>
+<p>为指定的图标名注册一个源URL；命名可以包含可选的“图标集”命名前缀。这些图标之后将用$mdIcon(&lt;icon name&gt;)从缓存检索。</p>
 
+<table>
+	<tr>
+		<th>参数</th>
+		<th>类型</th>
+		<th>描述</th>
+	</tr>
+	<tr>
+		<td>*id</td>
+		<td>string</td>
+		<td>用于注册图标的图标名/id</td>
+	</tr>
+	<tr>
+		<td>*url</td>
+		<td>string</td>
+		<td>指定数据文件的外部位置。被用来内部使用$http加载数据或如果配置了预加载的话，作为在$templateCache内查找的一部分。</td>
+	</tr>
+	<tr>
+		<td>iconSize</td>
+		<td>string</td>
+		<td>用于指定集合内图标宽高的数字。图标集内的所有图标必须保持相同的尺寸。默认尺寸是24.</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<th>返回</th>
+		<th>描述</th>
+	</tr>
+	<tr>
+		<td>obj</td>
+		<td>一个对$mdIconProvider的引用；用于支持链式方法调用的API</td>
+	</tr>
+</table>
+<h4>$mdIconProvider.iconSet(id,url, [iconSize]);</h4>
+<p>为“指定的”图标集注册一个源URL。每个定义都有一个图标ID的SVG组定义。独立的图标随后可以通过$mdIcon(&lt;icon set name&gt;:&lt;icon name&gt;)从缓存中被检索到。</p>
+<table>
+	<tr>
+		<th>参数</th>
+		<th>类型</th>
+		<th>描述</th>
+	</tr>
+	<tr>
+		<td>*id</td>
+		<td>string</td>
+		<td>用来注册图标集的图标name/id</td>
+	</tr>
+	<tr>
+		<td>*url</td>
+		<td>string</td>
+		<td>指定数据文件的外部位置。被用来内部使用$http加载数据或如果配置了预加载的话，作为在$templateCache内查找的一部分。</td>
+	</tr>
+	<tr>
+		<td>iconSize</td>
+		<td>string</td>
+		<td>用于指定集合内图标宽高的数字。图标集内的所有图标必须保持相同的尺寸。默认尺寸是24.</td>
+	</tr>
+</table>
+<h4>$mdIconProvider.defaultIconSet(url, [iconSize]);</h4>
+<p>为默认“指定的”图标集注册一个源URL。除非显式注册，否则对图标的查找将转移至“默认的”图标集。可通过$mdIcon(&lt;icon name&gt;)检索到这个被缓存的，默认的图标集。</p>
+<table>
+	<tr>
+		<th>参数</th>
+		<th>类型</th>
+		<th>描述</th>
+	</tr>
+	<tr>
+		<td>*url</td>
+		<td>string</td>
+		<td>指定数据文件的外部位置。被用来内部使用$http加载数据或如果配置了预加载的话，作为在$templateCache内查找的一部分。</td>
+	</tr>
+	<tr>
+		<td>iconSize</td>
+		<td>string</td>
+		<td>用于指定集合内图标宽高的数字。图标集内的所有图标必须保持相同的尺寸。默认尺寸是24.</td>
+	</tr>
+</table>
+<h4>$mdIconProvider.defaultIconSize(iconSize);</h4>
+<p>&lt;md-icon/&gt;标记也可以用CSS来指定样式，同时可以用这个方法来配置所有图标默认宽度和高度；除非你指定了CSS进行覆盖。默认尺寸是(24px,24px).</p>
+<table>
+	<tr>
+		<th>参数</th>
+		<th>类型</th>
+		<th>描述</th>
+	</tr>
+	<tr>
+		<td>*iconSize</td>
+		<td>string</td>
+		<td>用于指定图标集中图标宽度和高度的数字。所有图标集中的图标必须保持相同的尺寸。默认尺寸为24</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<th>返回</th>
+		<th>描述</th>
+	</tr>
+	<tr>
+		<td>obj</td>
+		<td>一个$mdIconProvider引用，用于支持链式方法调用的API</td>
+	</tr>
+</table>
 <h2>md-icon</h2>
 <p>md-icon指令是一个用于展示一个字体图标或者SVG图标的标记元素。不管是外部SVG（通过URL）还是来自图标集的缓存SVG都能很容易地被加载和使用。</p>
 
 <h3>用法</h3>
 <h4>html</h4>
 <code>
-	<md-icon md-font-icon="android" alt="android "></md-icon>  
-	<md-icon md-svg-icon="action:android" alt="android "></md-icon>  
-	<md-icon md-svg-src="/android.svg" alt="android "></md-icon>  
-	<md-icon md-svg-src="{{ getAndroid() }}" alt="android "></md-icon>
+	&lt;md-icon md-font-icon="android" alt="android "&gt;&lt;/md-icon&gt;  
+	&lt;md-icon md-svg-icon="action:android" alt="android "&gt;&lt;/md-icon&gt;  
+	&lt;md-icon md-svg-src="/android.svg" alt="android "&gt;&lt;/md-icon&gt;  
+	&lt;md-icon md-svg-src="{{ getAndroid() }}" alt="android "&gt;&lt;/md-icon&gt;
 </code>
 
 <h3>属性</h3>
@@ -144,7 +244,7 @@ app.config(function($mdIconProvider) {
 	<tr>
 		<td>*md-svg-icon</td>
 		<td>string</td>
-		<td>用来从内部缓存查询图标的字符串name；插值字符串或表达式都可以用。可以用语法\<set name\>:\<icon name\>"来使用特定的集合名。  
+		<td>用来从内部缓存查询图标的字符串name；插值字符串或表达式都可以用。可以用语法&lt;set name\&gt;:&lt;icon name\&gt;来使用特定的集合名。  
 
 		为了使用图标集（icon sets），开发者需要用$mdIconProvider服务预先注册这个图标集。
 		</td>
