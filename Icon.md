@@ -202,10 +202,10 @@ app.config(function($mdIconProvider) {
 <h4>html</h4>
 <code>
 ````
-	&lt;md-icon md-font-icon="android" alt="android "&gt;&lt;/md-icon&gt;  
-	&lt;md-icon md-svg-icon="action:android" alt="android "&gt;&lt;/md-icon&gt;  
-	&lt;md-icon md-svg-src="/android.svg" alt="android "&gt;&lt;/md-icon&gt;  
-	&lt;md-icon md-svg-src="{{ getAndroid() }}" alt="android "&gt;&lt;/md-icon&gt;
+	<md-icon md-font-icon="android" alt="android "></md-icon>  
+	<md-icon md-svg-icon="action:android" alt="android "></md-icon>  
+	<md-icon md-svg-src="/android.svg" alt="android "></md-icon>  
+	<md-icon md-svg-src="{{ getAndroid() }}" alt="android "></md-icon>
 ````
 </code>
 
