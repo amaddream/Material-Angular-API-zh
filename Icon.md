@@ -4,16 +4,16 @@
 <h4>用法</h4>
 <code>
 	function SomeDirective($mdIcon) {
-	//查看图标是否已被加载，如果没有<br>
-	//则从注册表缓存查找图标，然后加载并缓存<br>
-	//以备将来的请求<br>
-	//注意：ID查询需要以下配置<br>
-		$mdIconProvider<br>
-		$mdIcon('android').then(function(iconEl)    { element.append(iconEl); });<br>
-		$mdIcon('work:chair').then(function(iconEl) { element.append(iconEl); });<br>
-		//用一个URL加载和缓存外部SVG<br>
-		$mdIcon('img/icons/android.svg').then(function(iconEl) {<br>
-			element.append(iconEl);<br>
+	//查看图标是否已被加载，如果没有 <br>
+	//则从注册表缓存查找图标，然后加载并缓存 <br>
+	//以备将来的请求 <br>
+	//注意：ID查询需要以下配置 <br>
+		$mdIconProvider  <br>
+		$mdIcon('android').then(function(iconEl)    { element.append(iconEl); });  <br>
+		$mdIcon('work:chair').then(function(iconEl) { element.append(iconEl); });  <br>
+		//用一个URL加载和缓存外部SVG <br>
+		$mdIcon('img/icons/android.svg').then(function(iconEl) {  <br>
+			element.append(iconEl);  <br>
 		});<br>
 	};
 </code>
