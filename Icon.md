@@ -4,22 +4,18 @@
 <h4>用法</h4>
 <code>
 	function SomeDirective($mdIcon) {  
+		//查看图标是否已被加载，如果没有  
+		//则从注册表缓存查找图标，然后加载并缓存  
+		//以备将来的请求  
+		//注意：ID查询需要以下配置  
 
-	  // See if the icon has already been loaded, if not  
+		$mdIconProvider  
+		$mdIcon('android').then(function(iconEl)    { element.append(iconEl); });  
+		$mdIcon('work:chair').then(function(iconEl) { element.append(iconEl); });  
 
-	  // then lookup the icon from the registry cache, load and cache  
+		//用一个URL加载和缓存外部SVG  
 
-	  // it for future requests.  
-
-	  // NOTE: ID queries require configuration with $mdIconProvider  
-
-	  $mdIcon('android').then(function(iconEl)    { element.append(iconEl); });  
-
-	  $mdIcon('work:chair').then(function(iconEl) { element.append(iconEl); });  
-
-	  // Load and cache the external SVG using a URL  
-
-	  $mdIcon('img/icons/android.svg').then(function(iconEl) {  
+		$mdIcon('img/icons/android.svg').then(function(iconEl) {  
 
 	    element.append(iconEl);  
 
@@ -72,13 +68,13 @@ app.config(function($mdIconProvider) {
 
   $mdIconProvider  
 
-       .defaultIconSet('my/app/icons.svg')       //   Register a default set of SVG icons  
+       .defaultIconSet('my/app/icons.svg')       //   注册一个默认SVG图标集  
 
-       .iconSet('social', 'my/app/social.svg')   //   Register a named icon set of SVGs  
+       .iconSet('social', 'my/app/social.svg')   //   为一个SVG图标集注册一个命名  
 
-       .icon('android', 'my/app/android.svg')    //   Register a specific icon (by name)  
+       .icon('android', 'my/app/android.svg')    //   用name注册一个特定的图标  
 
-       .icon('work:chair', 'my/app/chair.svg');  //   Register icon in a specific set  
+       .icon('work:chair', 'my/app/chair.svg');  //   在指定的图标集内注册图标  
 
 });
 </code>
@@ -87,7 +83,7 @@ app.config(function($mdIconProvider) {
 <code>
 	app.config(function($mdIconProvider) {  
 
-	// Register a default set of SVG icon definitions  
+	// 注册一套默认的SVG图标定义  
 
 	$mdIconProvider.defaultIconSet('my/app/icons.svg')  
 
@@ -95,9 +91,9 @@ app.config(function($mdIconProvider) {
 
 .run(function($http, $templateCache){  
 
-	// Pre-fetch icons sources by URL and cache in the $templateCache...  
+	// 用URL和缓存从$templateCache预先获取图标源...  
 
-  // subsequent $http calls will look there first.  
+  // 随后$http调用会先从此处查看  
 
   var urls = [ 'imy/app/icons.svg', 'img/icons/android.svg'];  
 
@@ -127,7 +123,7 @@ app.config(function($mdIconProvider) {
 	<tr>
 		<td>*id</td>
 		<td>string</td>
-		<td>用于注册图标的图标名/id</td>
+		<td>用于注册图标的图标name/id</td>
 	</tr>
 	<tr>
 		<td>*url</td>
@@ -151,7 +147,7 @@ app.config(function($mdIconProvider) {
 	</tr>
 </table>
 <h4>$mdIconProvider.iconSet(id,url, [iconSize]);</h4>
-<p>为“指定的”图标集注册一个源URL。每个定义都有一个图标ID的SVG组定义。独立的图标随后可以通过$mdIcon(&lt;icon set name&gt;:&lt;icon name&gt;)从缓存中被检索到。</p>
+<p>为“指定的”图标集合注册一个源URL。每个定义都有一个图标ID的SVG组定义。独立的图标随后可以通过$mdIcon(&lt;icon set name&gt;:&lt;icon name&gt;)从缓存中被检索到。</p>
 <table>
 	<tr>
 		<th>参数</th>
