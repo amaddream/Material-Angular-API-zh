@@ -4,29 +4,17 @@
 <h4>用法</h4>
 <code>
 	function SomeDirective($mdIcon) {
-
 	//查看图标是否已被加载，如果没有
-
 	//则从注册表缓存查找图标，然后加载并缓存
-
 	//以备将来的请求
-
 	//注意：ID查询需要以下配置
-
 		$mdIconProvider
-
 		$mdIcon('android').then(function(iconEl)    { element.append(iconEl); });
-
 		$mdIcon('work:chair').then(function(iconEl) { element.append(iconEl); });
-
 		//用一个URL加载和缓存外部SVG
-
 		$mdIcon('img/icons/android.svg').then(function(iconEl) {
-
-	    element.append(iconEl);
-
-	  });
-
+			element.append(iconEl);
+		});
 	};
 </code>
 
@@ -223,11 +211,8 @@ app.config(function($mdIconProvider) {
 <h4>html</h4>
 <code>
 	&lt;md-icon md-font-icon="android" alt="android "&gt;&lt;/md-icon&gt;
-
 	&lt;md-icon md-svg-icon="action:android" alt="android "&gt;&lt;/md-icon&gt;
-
 	&lt;md-icon md-svg-src="/android.svg" alt="android "&gt;&lt;/md-icon&gt;
-
 	&lt;md-icon md-svg-src="{{ getAndroid() }}" alt="android "&gt;&lt;/md-icon&gt;
 </code>
 
