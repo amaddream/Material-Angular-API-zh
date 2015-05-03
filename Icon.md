@@ -4,11 +4,14 @@
 <h4>用法</h4>
 <code>
 	function SomeDirective($mdIcon) {  
-		//查看图标是否已被加载，如果没有  
-		//则从注册表缓存查找图标，然后加载并缓存  
-		//以备将来的请求  
-		//注意：ID查询需要以下配置  
 
+		//查看图标是否已被加载，如果没有  
+
+		//则从注册表缓存查找图标，然后加载并缓存  
+
+		//以备将来的请求  
+
+		//注意：ID查询需要以下配置  
 		$mdIconProvider  
 		$mdIcon('android').then(function(iconEl)    { element.append(iconEl); });  
 		$mdIcon('work:chair').then(function(iconEl) { element.append(iconEl); });  
@@ -63,11 +66,8 @@ $mdIconProvider只用于将URL注册为ID。这些配置特性允许图标和图
 <h4>js</h4>
 <code>
 app.config(function($mdIconProvider) {  
-
-  // Configure URLs for icons specified by [set:]id.  
-
+  // 用指明 [set:]id 的方式来为图标配置URL。  
   $mdIconProvider  
-
        .defaultIconSet('my/app/icons.svg')       //   注册一个默认SVG图标集  
 
        .iconSet('social', 'my/app/social.svg')   //   为一个SVG图标集注册一个命名  
@@ -82,27 +82,18 @@ app.config(function($mdIconProvider) {
 <h4>js</h4>
 <code>
 	app.config(function($mdIconProvider) {  
-
 	// 注册一套默认的SVG图标定义  
 
 	$mdIconProvider.defaultIconSet('my/app/icons.svg')  
-
 })  
 
 .run(function($http, $templateCache){  
-
 	// 用URL和缓存从$templateCache预先获取图标源...  
-
   // 随后$http调用会先从此处查看  
-
   var urls = [ 'imy/app/icons.svg', 'img/icons/android.svg'];  
-
   angular.forEach(urls, function(url) {  
-
     $http.get(url, {cache: $templateCache});  
-
   });  
-
 });
 </code>
 <P><strong>注意：</strong>SVG数据随后被内部缓存起来以备之后的请求</P>
@@ -220,8 +211,11 @@ app.config(function($mdIconProvider) {
 <h4>html</h4>
 <code>
 	&lt;md-icon md-font-icon="android" alt="android "&gt;&lt;/md-icon&gt;  
+
 	&lt;md-icon md-svg-icon="action:android" alt="android "&gt;&lt;/md-icon&gt;  
+
 	&lt;md-icon md-svg-src="/android.svg" alt="android "&gt;&lt;/md-icon&gt;  
+	
 	&lt;md-icon md-svg-src="{{ getAndroid() }}" alt="android "&gt;&lt;/md-icon&gt;
 </code>
 
