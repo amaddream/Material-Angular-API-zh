@@ -58,45 +58,34 @@ $mdIconProvider只用于将URL注册为ID。这些配置特性允许图标和图
 </p>
 <h4>js</h4>
 <code>
-app.config(function($mdIconProvider) {  
-  // 用指明 [set:]id 的方式来为图标配置URL。
-  $mdIconProvider
+````
+	app.config(function($mdIconProvider) {
+	  // 用指明 [set:]id 的方式来为图标配置URL。
+	  $mdIconProvider
        .defaultIconSet('my/app/icons.svg')       //   注册一个默认SVG图标集
-
        .iconSet('social', 'my/app/social.svg')   //   为一个SVG图标集注册一个命名
-
        .icon('android', 'my/app/android.svg')    //   用name注册一个特定的图标
-
        .icon('work:chair', 'my/app/chair.svg');  //   在指定的图标集内注册图标
-
-});
+	});
+````
 </code>
 <p>SVG图标和图标集可通过使用(a)构建过程 或 (b)运行时的启动过程，被轻松预加载和缓存（如下所示）：</p>
 <h4>js</h4>
 <code>
-	app.config(function($mdIconProvider) {
-
-	// 注册一套默认的SVG图标定义  
-
-	$mdIconProvider.defaultIconSet('my/app/icons.svg')
-
-})  
-
+````
+app.config(function($mdIconProvider) {
+  // 注册一套默认的SVG图标定义  
+  $mdIconProvider.defaultIconSet('my/app/icons.svg')
+})
 .run(function($http, $templateCache){
-
-	// 用URL和缓存从$templateCache预先获取图标源...
-
+  // 用URL和缓存从$templateCache预先获取图标源...
   // 随后$http调用会先从此处查看
-
   var urls = [ 'imy/app/icons.svg', 'img/icons/android.svg'];
-
   angular.forEach(urls, function(url) {
-
     $http.get(url, {cache: $templateCache});
-
   });
-
 });
+````
 </code>
 <P><strong>注意：</strong>SVG数据随后被内部缓存起来以备之后的请求</P>
 
@@ -212,10 +201,12 @@ app.config(function($mdIconProvider) {
 <h3>用法</h3>
 <h4>html</h4>
 <code>
+````
 	&lt;md-icon md-font-icon="android" alt="android "&gt;&lt;/md-icon&gt;
 	&lt;md-icon md-svg-icon="action:android" alt="android "&gt;&lt;/md-icon&gt;
 	&lt;md-icon md-svg-src="/android.svg" alt="android "&gt;&lt;/md-icon&gt;
 	&lt;md-icon md-svg-src="{{ getAndroid() }}" alt="android "&gt;&lt;/md-icon&gt;
+````
 </code>
 
 <h3>属性</h3>
